@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.GuruDao">
+    <select id="findByGZ" resultType="Guru">
+        select gr.id id,gr.name name,gr.photo photo,gr.status status,gr.nick_name nick_name from guru gr left join guanZhu gz on gr.id = gz.guru_id
+        where gz.user_id=#{uid}
+    </select>
+</mapper>

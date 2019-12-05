@@ -1,0 +1,36 @@
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.ArticleDao">
+    <resultMap id="agMap" type="Article">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="img" property="img"/>
+        <result column="content" property="content"/>
+        <result column="create_date" property="create_date"/>
+        <result column="publish_date" property="publish_date"/>
+        <result column="status" property="status"/>
+        <result column="guru_id" property="guru_id"/>
+        <association property="guru" javaType="Guru">
+            <result column="gname" property="name"/>
+        </association>
+    </resultMap>
+    <select id="findAll" resultMap="agMap">
+        select a.id id,a.title title,a.img img,a.content content,a.create_date create_date,
+        a.publish_date publish_date,a.status status,a.guru_id guru_id,g.name gname
+        from article a left join guru g on a.guru_id = g.id
+        limit #{start},#{row}
+    </select>
+    <update id="update">
+        update article set title=#{title},status=#{status},content=#{content} where id=#{id}
+    </update>
+    <update id="updateImg">
+        update article set img=#{img} where id=#{id}
+    </update>
+    <insert id="add">
+        insert article values(#{id},#{title},#{img},#{content},#{create_date},#{publish_date},#{guru_id},#{status})
+    </insert>
+    <delete id="delete">
+        delete from article where id =#{id}
+    </delete>
+</mapper>-->

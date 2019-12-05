@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.ArticleDao">
+    <resultMap id="gzMap" type="Article">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="img" property="img"/>
+        <result column="create_date" property="create_date"/>
+        <result column="guru_id" property="guru_id"/>
+        <association property="guru" javaType="Guru">
+            <result column="gname" property="name"/>
+        </association>
+    </resultMap>
+    <select id="findByOrder" resultMap="gzMap">
+        select a.id id,a.title title,a.img img,a.create_date create_date,a.guru_id,g.name gname
+        from article a left join guru g on a.guru_id= g.id
+        order by create_date  desc
+        limit 0,3
+    </select>
+    <select id="findByGZ" resultMap="gzMap">
+
+        select a.id id,a.title title,a.img img,a.create_date create_date,a.guru_id,g.name gname
+        from article a left join guru g on a.guru_id= g.id left join guanZhu gz on g.id=gz.guru_id
+        where gz.user_id=#{uid}
+
+    </select>
+</mapper>
